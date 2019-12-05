@@ -1,0 +1,169 @@
+﻿<Window x:Class="CRUDBC.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CRUDBC"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="623" Width="700">
+    <Grid Margin="0,0,0,73">
+        <TabControl TabStripPlacement="Left" Margin="0,0,0,-79">
+            <TabItem Header="Register" Margin="-4,-2,0,-2">
+                <Grid Background="Pink" Margin="0,-10,-6,-2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="78"/>
+                        <RowDefinition Height="97*"/>
+                        <RowDefinition Height="429*"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Register" HorizontalAlignment="Left" Margin="216,6,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="48" Width="202" FontStyle="Italic"/>
+                    <Label x:Name="lblUsname" Content="User Name" HorizontalAlignment="Left" Margin="169,10,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+                    <Label x:Name="lblEmail" Content="Email" HorizontalAlignment="Left" Margin="169,57,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+                    <Label x:Name="lblRole" Content="Role" HorizontalAlignment="Left" Margin="174,16,0,0" VerticalAlignment="Top" Grid.Row="2"/>
+                    <TextBox  x:Name="TxtUsName" HorizontalAlignment="Left" Height="35" Margin="298,4,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="215" Grid.Row="1" PreviewTextInput="TxtUsName_PreviewTextInput"/>
+                    <TextBox  x:Name="TxtUsEmail" HorizontalAlignment="Left" Height="35" Margin="296,56,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="217" PreviewTextInput="TxtUsEmail_PreviewTextInput"/>
+                    <ComboBox x:Name="ComboUser" HorizontalAlignment="Left" Margin="296,16,0,0" Grid.Row="2" VerticalAlignment="Top" Width="217" Height="34" SelectionChanged="ComboUser_SelectionChanged"  ItemsSource="{Binding Register}" DisplayMemberPath="RoleName" SelectedValuePath="IdRole"/>
+                    <Button x:Name="BtnRegister" Content="Register" HorizontalAlignment="Left" Height="25" Margin="169,84,0,0" Grid.Row="2" VerticalAlignment="Top" Width="86" Click="BtnRegister_Click"/>
+                    <Button x:Name="BtnCancel" Content="Cancel" HorizontalAlignment="Left" Height="26" Margin="361,84,0,0" Grid.Row="2" VerticalAlignment="Top" Width="86" Click="BtnCancel_Click"/>
+                    <DataGrid x:Name="GridUser" HorizontalAlignment="Left" Margin="60,119,0,0" Grid.Row="2" VerticalAlignment="Top" Height="268" Width="506" AutoGenerateColumns="false">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="50" Header="ID" Binding="{Binding Id}"/>
+                            <DataGridTextColumn Width="150" Header="User Name" Binding="{Binding UserName}"/>
+                            <DataGridTextColumn Width="250" Header="Email" Binding="{Binding Email}"/>
+                            <DataGridTextColumn Width="130" Header="Password" Binding="{Binding Password}"/>
+                            <DataGridTextColumn Width="130" Header="Role" Binding="{Binding Roles.RoleName}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Role" Margin="-4,-2,0,-2" Height="24" VerticalAlignment="Top">
+                <Grid Background="Pink">
+                    <Label x:Name="lblId" Content="Id Role" HorizontalAlignment="Left" Margin="155,132,0,0" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Century Gothic" FontSize="16" />
+                    <Label x:Name="lblRoleName" Content="Role Name" HorizontalAlignment="Left" Margin="122,204,0,0" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Century Gothic" FontSize="16"/>
+                    <Label x:Name="lblHeader" Content="Role User" HorizontalAlignment="Left" Margin="191,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Century Gothic" FontSize="48" Width="266"/>
+                    <TextBox x:Name="TxtIdRole" HorizontalAlignment="Left" Height="32" Margin="284,128,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="118" RenderTransformOrigin="0.693,0.094"/>
+                    <TextBox x:Name="TxtRoleName" HorizontalAlignment="Left" Height="23" Margin="282,204,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" PreviewTextInput="TxtRoleName_PreviewTextInput" TextChanged="TxtRoleName_TextChanged"/>
+                    <Button x:Name="BtnSvRole" Content="Submit" HorizontalAlignment="Left" Height="32" Margin="299,262,0,0" VerticalAlignment="Top" Width="88" Click="BtnSvRole_Click"/>
+                    <DataGrid x:Name="GridRole" SelectionChanged="GridRole_SelectionChanged" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="168" VerticalAlignment="Top" Width="410" Margin="106,330,0,0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="80" Header="Id Role" Binding="{Binding IdRole}"/>
+                            <DataGridTextColumn Width="150" Header="Role Name" Binding="{Binding RoleName}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Supplier" Margin="-4,-2,0,2">
+                <Grid Background="Pink">
+                    <Label x:Name="label" Content="Id Supplier" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="19,10,0,0" FontWeight="Bold"/>
+                    <TextBox x:Name="TxtId" HorizontalAlignment="Left" Height="23" Margin="19,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="132" TextChanged="TxtId_TextChanged" IsReadOnly="True"/>
+                    <Label x:Name="label1" Content="Name Supplier" HorizontalAlignment="Left" Margin="19,78,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                    <TextBox x:Name="TxtName" HorizontalAlignment="Left" Height="21" Margin="19,109,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="132" TextChanged="TxtName_TextChanged"/>
+                    <Label x:Name="label2" Content="Email" HorizontalAlignment="Left" Margin="19,153,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                    <TextBox x:Name="TxtEmail" HorizontalAlignment="Left" Height="22" Margin="19,184,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="132" PreviewTextInput="TxtEmail_PreviewTextInput" TextChanged="TxtEmail_TextChanged"/>
+                    <DataGrid x:Name="GridSupplier" HorizontalAlignment="Left" Margin="196,25,0,0" VerticalAlignment="Top" Height="391" Width="418" SelectionChanged="GridSupplier_SelectionChanged" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="50" Header="ID" Binding="{Binding Id}"/>
+                            <DataGridTextColumn Width="150" Header="Name" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Width="80" Header="Email" Binding="{Binding Email}"/>
+                            <DataGridTextColumn Width="130" Header="Date" Binding="{Binding CreateDate}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button x:Name="BtnSubmit" Content="Insert" HorizontalAlignment="Left" Margin="19,242,0,0" VerticalAlignment="Top" Width="75" Click="BtnSubmit_Click"/>
+                    <Button x:Name="BtnUpdate" Content="Update" HorizontalAlignment="Left" Margin="115,242,0,0" VerticalAlignment="Top" Width="65" Click="BtnUpdate_Click" Height="26"/>
+                    <Button x:Name="BtnDeleteS" Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="19,293,0,0" Click="BtnDeleteS_Click"/>
+                    <Button x:Name="BtnRefresh" Content="Refresh" HorizontalAlignment="Left" Margin="112,292,0,0" VerticalAlignment="Top" Width="70" Height="25" Click="BtnRefresh_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Item" Margin="-4,2,0,-2">
+                <Grid Background="Pink" Margin="2,-3,-2,-3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="62*"/>
+                        <RowDefinition Height="537*"/>
+                    </Grid.RowDefinitions>
+                    <Label x:Name="ID" Content="Id Item" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="22,5,0,0" FontWeight="Bold"/>
+                    <TextBox x:Name="TxtItemId" HorizontalAlignment="Left" Height="17" Margin="22,36,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="113" PreviewTextInput="TxtItemId_PreviewTextInput" TextChanged="TxtItemId_TextChanged" IsReadOnly="True"/>
+                    <Label x:Name="NameItem" Content="Name Item" HorizontalAlignment="Left" Margin="22,58,0,0" VerticalAlignment="Top" Grid.RowSpan="2" FontWeight="Bold"/>
+                    <TextBox x:Name="TxtNameItem" HorizontalAlignment="Left" Height="28" Margin="22,22.5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="132" PreviewTextInput="TxtNameItem_PreviewTextInput"  TextChanged="TxtNameItem_TextChanged" Grid.Row="1"/>
+                    <Label x:Name="Stock" Content="Stock" HorizontalAlignment="Left" Margin="23,48.5,0,0" VerticalAlignment="Top" Grid.Row="1" FontWeight="Bold"/>
+                    <TextBox x:Name="TxtStock" HorizontalAlignment="Left" Height="28" Margin="23,79.5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="132" PreviewTextInput="TxtStock_PreviewTextInput" TextChanged="TxtStock_TextChanged" Grid.Row="1"/>
+                    <Label x:Name="Price" Content="Price" HorizontalAlignment="Left" Margin="26,108.5,0,0" VerticalAlignment="Top" Grid.Row="1" FontWeight="Bold"/>
+                    <TextBox x:Name="TxtPrice" HorizontalAlignment="Left" Height="28" Margin="23,134.5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="132" PreviewTextInput="TxtPrice_PreviewTextInput" TextChanged="TxtPrice_TextChanged" Grid.Row="1"/>
+                    <Label x:Name="Supplier" Content="Supplier Name" HorizontalAlignment="Left" Margin="28,178,0,0" VerticalAlignment="Top" Grid.Row="1" FontWeight="Bold"/>
+                    <ComboBox x:Name="ComboSupp" HorizontalAlignment="Left" Margin="23,201.5,0,0" VerticalAlignment="Top" Width="131" ItemsSource="{Binding Supplier}" DisplayMemberPath="Name" SelectedValuePath="Id" SelectionChanged="ComboSupp_SelectionChanged" Grid.Row="1" />
+                    <DataGrid x:Name="GridItem" HorizontalAlignment="Left" Margin="228,10,0,0" VerticalAlignment="Top" Height="339" Width="387" SelectionChanged="GridItem_SelectionChanged" AutoGenerateColumns="False" Grid.RowSpan="2">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="50" Header="ID" Binding="{Binding ItemId}"/>
+                            <DataGridTextColumn Width="100" Header="Name Item" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Width="50" Header="Stock" Binding="{Binding Stock}"/>
+                            <DataGridTextColumn Width="90" Header="Price" Binding="{Binding Price}"/>
+                            <DataGridTextColumn Width="90" Header="Supplier" Binding="{Binding Supplier.Name}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button x:Name="BtnSave" Content="Insert" HorizontalAlignment="Left" Margin="19,252.5,0,0" VerticalAlignment="Top" Width="75" Click="BtnSave_Click" Grid.Row="1"/>
+                    <Button x:Name="BtnEdit" Content="Update" HorizontalAlignment="Left" Margin="117,252.5,0,0" VerticalAlignment="Top" Width="75" Click="BtnEdit_Click" Grid.Row="1"/>
+                    <Button x:Name="BtnDelete" Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="74" Margin="18,298.5,0,0" Click="BtnDelete_Click" Grid.Row="1"/>
+                    <Button x:Name="BtnRefreshItem" Content="Refresh" HorizontalAlignment="Left" Margin="120,295.5,0,0" VerticalAlignment="Top" Width="74" Click="BtnRefreshItem_Click" Grid.Row="1"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Penjualan" Margin="-2,2,-1,-2">
+                <Grid Background="Pink" Margin="-1,-19,-1,19" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="42*"/>
+                        <RowDefinition Height="551*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label x:Name="Transaksi" Content="Penjualan" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="191,19,0,0" RenderTransformOrigin="-0.016,0.115" Height="75" Width="198" FontFamily="Poor Richard" FontSize="48" Grid.RowSpan="2"/>
+                    <Label x:Name="Id" Content="Id Transaksi" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="41,39,0,0" FontWeight="Bold" Grid.RowSpan="2"/>
+                    <TextBox x:Name="TxtIdTransaksi" HorizontalAlignment="Left" Height="26" Margin="34,26,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="118" PreviewTextInput="TxtIdTransaksi_PreviewTextInput" TextChanged="TxtIdTransaksi_TextChanged" IsReadOnly="True" Grid.Row="1"/>
+                    <Label x:Name="Date" Content="Date Transaksi" HorizontalAlignment="Left" Margin="452,30,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.575,0.423" FontWeight="Bold" Grid.RowSpan="2"/>
+                    <TextBox x:Name="TxtDate" HorizontalAlignment="Left" Height="23" Margin="447,18,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="131" PreviewTextInput="TxtDate_PreviewTextInput" TextChanged="TxtDate_TextChanged" Grid.Row="1"/>
+                    <Label x:Name="Item" Content="Item Name" HorizontalAlignment="Left" Margin="37,61,0,0" VerticalAlignment="Top" Grid.Row="1" FontWeight="Bold"/>
+                    <ComboBox x:Name="ComboItem" HorizontalAlignment="Left" Margin="31,88,0,0" VerticalAlignment="Top" Width="118" ItemsSource="{Binding Item}" DisplayMemberPath="Name" SelectedValuePath="ItemId" SelectionChanged="ComboItem_SelectionChanged" Height="27" Grid.Row="1" />
+                    <Label x:Name="PriceItem" Content="Price" HorizontalAlignment="Left" Margin="176,61,0,0" VerticalAlignment="Top" Grid.Row="1" FontWeight="Bold"/>
+                    <TextBox x:Name="TxtPriceItem" HorizontalAlignment="Left" Height="28" Margin="172,88,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="118" PreviewTextInput="TxtPriceItem_PreviewTextInput" TextChanged="TxtPriceItem_TextChanged" IsReadOnly="True" Grid.Row="1"/>
+                    <Label x:Name="Quantity" Content="Quantity" HorizontalAlignment="Left" Margin="442,60,0,0" VerticalAlignment="Top" Grid.Row="1" FontWeight="Bold"/>
+                    <TextBox x:Name="TxtQty" HorizontalAlignment="Left" Height="28" Margin="438,86,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="88" PreviewTextInput="TxtQty_PreviewTextInput" TextChanged="TxtQty_TextChanged" RenderTransformOrigin="0.553,2.947" Grid.Row="1"/>
+                    <Label x:Name="StockItem" Content="Stock" HorizontalAlignment="Left" Margin="312,60,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.487,-0.077" Grid.Row="1" FontWeight="Bold"/>
+                    <TextBox x:Name="TxtStockItem" HorizontalAlignment="Left" Height="26" Margin="308,87,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="108" PreviewTextInput="TxtStockItem_PreviewTextInput" Grid.Row="1" TextChanged="TxtStockItem_TextChanged" IsReadOnly="True"/>
+                    <DataGrid x:Name="GridTransaksi" DataContext="{Binding Source=Transaksi}" HorizontalAlignment="Left" Margin="26,128.5,0,0" VerticalAlignment="Top" Height="220" Width="556" SelectionChanged="GridTransaksi_SelectionChanged" AutoGenerateColumns="False" Grid.Row="1">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id Item" Binding="{Binding ItemId}"/>
+                            <DataGridTextColumn Header="Name Item" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Price" Binding="{Binding Price}"/>
+                            <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}"/>
+                            <DataGridTextColumn Header="Total" Binding="{Binding Total}"/>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button x:Name="BtnDelItem" Content="Delete" Click="BtnDelItem_Click"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button x:Name="BtnSv" Content="Save" HorizontalAlignment="Left" Margin="28,376,0,0" VerticalAlignment="Top" Width="77" Click="BtnSv_Click" Grid.Row="1" Height="28" FontWeight="Bold"/>
+                    <Button x:Name="BtnUpd" Content="Update" HorizontalAlignment="Left" Margin="208,434,0,0" VerticalAlignment="Top" Width="76" Click="BtnUpd_Click" Grid.Row="1"/>
+                    <Button x:Name="BtnCnl" Content="Cancel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="82" Margin="142,378,0,0" Click="BtnCnl_Click" Grid.Row="1" Height="26" FontWeight="Bold"/>
+                    <Button x:Name="BtnTbh" Content="ADD" HorizontalAlignment="Left" Margin="540,87,0,0" VerticalAlignment="Top" Width="80" Height="26" Click="BtnTbh_Click" Grid.Row="1" FontWeight="Bold" />
+                    <Label x:Name="TotalPay" Content="Total Payment" HorizontalAlignment="Left" Margin="348,377.5,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+                    <TextBox x:Name="TxtTotpay" HorizontalAlignment="Left" Height="44" Margin="456,375.5,0,0" IsReadOnly="True" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="149" TextChanged="TxtTotpay_TextChanged" Grid.Row="1"/>
+                    <Label x:Name="Pay" Content="Payment" HorizontalAlignment="Left" Margin="371,437.5,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+                    <TextBox x:Name="TxtPayment" HorizontalAlignment="Left" Height="24" Margin="462,440.5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Row="1" KeyDown="TxtPayment_KeyDown" PreviewTextInput="TxtPayment_PreviewTextInput"   TextChanged="TxtPayment_TextChanged"/>
+                    <Label x:Name="Change" Content="Change" HorizontalAlignment="Left" Margin="377,492.5,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+                    <TextBox x:Name="TxtChange" IsReadOnly="True" HorizontalAlignment="Left" Height="24" Margin="462,494.5,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Row="1" TextChanged="TxtChange_TextChanged"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Change Password" Margin="-2,2,-1,-2">
+                <Grid Background="Pink" Margin="-1,-19,-1,19" >
+                    <TextBox x:Name="TxtOldPsw" HorizontalAlignment="Left" Height="42" Margin="289,104,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="155"/>
+                    <Label Content="Old Password" FontFamily="Century Gothic" HorizontalAlignment="Left" Height="29" Margin="123,131,0,0" VerticalAlignment="Top" Width="124" FontSize="14"/>
+                    <Label Content="New Password" HorizontalAlignment="Left" Height="31" Margin="123,192,0,0" VerticalAlignment="Top" Width="107" FontSize="14" FontFamily="Century Gothic"/>
+                    <TextBox x:Name="TxtNewPsw" HorizontalAlignment="Left" Height="46" Margin="289,164,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="155"/>
+                    <Button Content="Submit" Background="Transparent" FontFamily="Century Gothic" Foreground="Black" HorizontalAlignment="Left" Height="40" Margin="247,288,0,0" VerticalAlignment="Top" Width="103"/>
+                </Grid>
+            </TabItem>
+            <TextBox Height="23" TextWrapping="Wrap" Text="TextBox" Width="120"/>
+
+        </TabControl>
+    </Grid>
+</Window>
